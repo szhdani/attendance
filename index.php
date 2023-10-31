@@ -39,7 +39,7 @@
             <input require type="text" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp">
             <div id="phoneHelp" class="form-text">We'll never share your number with anyone else.</div>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary btn-block">Register</button>
+        <button type="submit" name="submit" class="btn btn-primary">Register</button>
     </form>
 
 <?php require_once 'includes/footer.php'; ?>
