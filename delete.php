@@ -1,6 +1,7 @@
 <?php
     $title = 'Delete record';
     require_once 'includes/header.php';
+    require_once 'includes/auth_check.php';
     require_once 'db/conn.php';
 
     if(!isset($_GET['id'])){
@@ -9,7 +10,8 @@
     }
     else{
         $id = $_GET['id'];
-        $result = $crud->getAttendeeDetails($id);
+        if($crud->attendeeExists($id)){
+            $result = $crud->getAttendeeDetails($id);
 ?>
     <form method="post" action="deletepost.php">
         <input type="hidden" name="id" value="<?php echo $id ?>">
@@ -38,5 +40,10 @@
         <button type="submit" name="submit" class="btn btn-danger">Delete</button>
     </form>
 
-<?php } ?>
+<?php   }
+        else{
+            include 'includes/idnotfound.php';
+        } 
+    }?>
+        
 <?php require_once 'includes/footer.php'; ?>

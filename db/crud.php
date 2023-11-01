@@ -6,6 +6,27 @@
             $this->db = $conn;
         }
 
+        public function attendeeExists($id){
+            try {
+                $sql = "SELECT COUNT(*) AS num FROM attendee WHERE attendee_id = :id;";
+                $stmt = $this->db->prepare($sql);
+
+                $stmt->bindparam(':id', $id);
+
+                $stmt->execute();
+                $result = $stmt->fetch();
+                if($result['num'] > 0){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
         public function insertAttendee($fname, $lname, $dob, $email, $contact, $specialty){
             try {
                 $sql = "INSERT INTO attendee(firstname, lastname, dateofbirth, emailaddress, contactnumber, specialty_id) VALUES (:fname, :lname, :dob, :email, :contact, :specialty);";
@@ -28,7 +49,7 @@
 
         public function editAttendee($id, $fname, $lname, $dob, $email, $contact, $specialty){
             try {
-                $sql = "UPDATE attendee SET firstname=:fname, lastname=:lname, dateofbirth=:dob, emailaddress=:email, contactnumber=:contact, specialty_id=:specialty WHERE attendee_id=:id;";
+                $sql = "UPDATE attendee SET firstname = :fname, lastname = :lname, dateofbirth = :dob, emailaddress = :email, contactnumber = :contact, specialty_id = :specialty WHERE attendee_id = :id;";
                 $stmt = $this->db->prepare($sql);
 
                 $stmt->bindparam(':id', $id);
@@ -63,7 +84,9 @@
             try{
                 $sql = "SELECT * FROM attendee AS a INNER JOIN specialties AS s ON a.specialty_id = s.specialty_id WHERE attendee_id = :id;";
                 $stmt = $this->db->prepare($sql);
+
                 $stmt->bindparam(':id', $id);
+
                 $stmt->execute();
                 $result = $stmt->fetch();
                 return $result;
@@ -77,7 +100,9 @@
             try {
                 $sql = "DELETE FROM attendee WHERE attendee_id = :id;";
                 $stmt = $this->db->prepare($sql);
+
                 $stmt->bindparam(':id', $id);
+
                 $stmt->execute();
                 return true;
             } catch (PDOException $e) {

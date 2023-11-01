@@ -1,4 +1,5 @@
 <?php
+    require_once 'includes/auth_check.php';
     require_once 'db/conn.php';
     if(!isset($_POST['id'])){
         include 'includes/errormessage.php';
@@ -6,12 +7,17 @@
     }
     else{
         $id = $_POST['id'];
-        $result = $crud->deleteAttendee($id);
-        if($result){
-            header("Location: viewrecords.php?result=$result");
+        if($crud->attendeeExists($id)){
+            $result = $crud->deleteAttendee($id);
+            if($result){
+                header("Location: viewrecords.php?result=$result");
+            }
+            else{
+                include 'includes/errormessage.php';
+            }
         }
         else{
-            include 'includes/errormessage.php';
+            include 'includes/idnotfound.php';
         }
     }
 ?>
