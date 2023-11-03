@@ -11,7 +11,8 @@
         $contact = $_POST['phone'];
         $specialty = $_POST['specialty'];
 
-        if(isset($_POST['avatar'])){
+        $destination = NULL;
+        if(!empty($_FILES['avatar']['tmp_name'])){
             $original_file = $_FILES['avatar']['tmp_name'];
             $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
             $target_dir = 'uploads/';
@@ -33,7 +34,7 @@
 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <img src="<?php echo empty($result['avatar_path'])?"uploads/default.jpg":$result['avatar_path'] ?>" class="rounded-circle"/>
+            <img src="<?php echo empty($destination)?"uploads/default.jpg":$destination ?>" class="rounded-circle w-100"/>
             <h5 class="card-title">
                 <?php echo $_POST['firstname'].' '.$_POST['lastname']?>
             </h5>
