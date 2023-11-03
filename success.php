@@ -10,7 +10,16 @@
         $email = $_POST['email'];
         $contact = $_POST['phone'];
         $specialty = $_POST['specialty'];
-        $isSuccess = $crud->insertAttendee($fname, $lname, $dob, $email, $contact, $specialty);
+
+        if(isset($_POST['avatar'])){
+            $original_file = $_FILES['avatar']['tmp_name'];
+            $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+            $target_dir = 'uploads/';
+            $destination = $target_dir.$contact.'.'.$extension;
+            move_uploaded_file($original_file, $destination);
+        }
+
+        $isSuccess = $crud->insertAttendee($fname, $lname, $dob, $email, $contact, $specialty, $destination);
         $specialtyName = $crud->getSpecialtyById($specialty);
 
         if($isSuccess){
@@ -24,6 +33,7 @@
 
     <div class="card" style="width: 18rem;">
         <div class="card-body">
+            <img src="<?php echo empty($result['avatar_path'])?"uploads/default.jpg":$result['avatar_path'] ?>" class="rounded-circle"/>
             <h5 class="card-title">
                 <?php echo $_POST['firstname'].' '.$_POST['lastname']?>
             </h5>
