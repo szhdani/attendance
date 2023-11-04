@@ -16,8 +16,21 @@
                 $email = $_POST['email'];
                 $contact = $_POST['phone'];
                 $specialty = $_POST['specialty'];
+
+                $destination = $crud->getAttendeeDetails($id)['avatar_path'];
+                if(!empty($_FILES['avatar']['tmp_name'])){
+                    $original_file = $_FILES['avatar']['tmp_name'];
+                    $extension = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
+                    $target_dir = 'uploads/';
+                    $destination = $target_dir.$contact.'.'.$extension;
+                    move_uploaded_file($original_file, $destination);
+                }
+
+                if(isset($_POST['removeAvatar'])){
+                    $destination = NULL;
+                }
     
-                $result = $crud->editAttendee($id, $fname, $lname, $dob, $email, $contact, $specialty);
+                $result = $crud->editAttendee($id, $fname, $lname, $dob, $email, $contact, $specialty, $destination);
     
                 if($result){
                     header("Location: viewrecords.php?result=$result");

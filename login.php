@@ -21,7 +21,7 @@
 ?>
 
     <h1 class="text-center"><?php echo $title ?></h1>
-    <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
+    <form method="post" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" autocomplete="off">
         <table class="table table-sm">
             <tr>
                 <td><label for="username">Username:* </label></td>
@@ -34,9 +34,9 @@
                 <td><input type="password" class="form-control" name="password" id="password"></td>
             </tr>
         </table>
-        <input type="submit" value="Log in" class="btn btn-primary">
-        <br/>
-        <a href="#">Forgot password</a>
+        <div class="d-grid gap-2 mx-auto">
+            <input type="submit" value="Log in" class="btn btn-success">
+        </div>
     </form>
 
 <?php include_once 'includes/footer.php'; ?>

@@ -12,30 +12,31 @@
         <link rel="stylesheet" href="css/site.css">
     </head>
     <body>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="index.php">IT Conference</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav me-auto">
-                            <a class="nav-link active" href="index.php">Home</a>
-                            <a class="nav-link" href="viewrecords.php">View attendees</a>
-                        </div>
-                        <div class="navbar-nav ms-auto">
-                            <?php
-                                if(!isset($_SESSION['userid'])){
-                            ?>
-                            <a class="nav-link" href="login.php">Log in</a>
-                            <?php }
-                                else{ ?>
-                            <a class="nav-link" href="#">Hello <?php echo $_SESSION['username']?>!</a>
-                            <a class="nav-link" href="logout.php">Log out</a>
-                            <?php } ?>
-                        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid container">
+                <a class="navbar-brand" href="index.php">IT Conference</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav me-auto">
+                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link" href="viewrecords.php">View attendees</a>
+                    </div>
+                    <div class="navbar-nav ms-auto">
+                        <?php
+                            if(!isset($_SESSION['userid'])){
+                        ?>
+                        <a class="nav-link" href="login.php">Log in</a>
+                        <?php }
+                            else{ ?>
+                        <a class="nav-link" href="#">Hello <?php echo $_SESSION['username']?>!</a>
+                        <a class="nav-link" href="logout.php">Log out</a>
+                        <?php } ?>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </nav>
+        <div class="container">
+            
             <br/>

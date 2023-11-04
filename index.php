@@ -8,18 +8,18 @@
 
     <h1 class="text-center">Registration for IT conference</h1>
 
-    <form method="post" action="success.php" enctype="multipart/form-data">
+    <form method="post" action="success.php" enctype="multipart/form-data" autocomplete="off">
         <div class="mb-3">
             <label for="firstname">First name</label>
-            <input require type="text" class="form-control" id="firstname" name="firstname">
+            <input required type="text" class="form-control" id="firstname" name="firstname">
         </div>
         <div class="mb-3">
             <label for="lastname">Last name</label>
-            <input require type="text" class="form-control" id="lastname" name="lastname">
+            <input required type="text" class="form-control" id="lastname" name="lastname">
         </div>
         <div class="mb-3">
             <label for="dob">Date of birth</label>
-            <input require type="text" class="form-control" id="dob" name="dob">
+            <input required type="text" class="form-control" id="dob" name="dob">
         </div>
         <div class="mb-3">
             <label for="specialty" class="form-label">Area of expertise</label>
@@ -31,12 +31,12 @@
         </div>
         <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
-            <input require type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+            <input required type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
             <label for="phone" class="form-label">Contact number</label>
-            <input require type="text" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp">
+            <input required type="text" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp">
             <div id="phoneHelp" class="form-text">We'll never share your number with anyone else.</div>
         </div>
         <div class="mb-3">
@@ -44,7 +44,9 @@
             <input class="form-control" type="file" accept="image/*" id="avatar" name="avatar" aria-describedby="avatarHelp">
             <div id="avatarHelp" class="form-text">File upload is optional</div>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary">Register</button>
+        <div class="d-grid gap-2 mx-auto">
+            <button type="submit" name="submit" class="btn btn-success">Register</button>
+        </div>
     </form>
 
 <?php require_once 'includes/footer.php'; ?>
